@@ -1,5 +1,6 @@
 /*eslint-disable*/
 import React from "react";
+
 import { Link } from "react-router-dom";
 
 import IndexNavbar from "components/Navbars/IndexNavbar.js";
@@ -24,8 +25,11 @@ export default function Index() {
             Trouvez votre maison de rêve dès maintenant
           </p>
    <div>
-    <button class="btn"><i class="animation"></i>Découvrir<i class="animation"></i>
-    </button>
+  <Link to="/Landing" className="btn">
+  <i className="animation"></i>
+  Découvrir
+  <i className="animation"></i>
+</Link>
 </div>
           </div>
       </section>
