@@ -50,23 +50,26 @@ export default function Navbar(props) {
               <li className="flex items-center">
                 <IndexDropdown />
               </li>
-             
+          
+    
+<li className="flex items-center">
+  <Link
+    to="/rendezvous"
+    className="hover:text-blue-600 text-blue-700 px-3 py-4 lg:py-2 flex items-center text-xss uppercase font-bold"
+  >
+    <span className="inline-block">📅 Demander rendez-vous</span>
+  </Link>
+</li>
 
-             
-   <li className="flex items-center">
-              <a
-  className="hover:text-blue-600 text-blue-700 px-3 py-4 lg:py-2 flex items-center text-xss uppercase font-bold"
-  href="/rendezvous"
->
-  <span className="inline-block">📅 Demander rendez-vous</span>
-</a>
-              </li>
-              <a
-  className="hover:text-blue-600 text-blue-700 px-3 py-4 lg:py-2 flex items-center text-xss uppercase font-bold"
-  href="/rendezvous"
->
-  <span className="inline-block">🔓 Se déconnecter</span>
-</a>
+<li className="flex items-center">
+  <Link
+    to="/logout"   // tu peux changer par une vraie page logout si tu veux
+    className="hover:text-blue-600 text-blue-700 px-3 py-4 lg:py-2 flex items-center text-xss uppercase font-bold"
+  >
+    <span className="inline-block">🔓 Se déconnecter</span>
+  </Link>
+</li>
+
 
               {/*<li className="flex items-center">
                 <button
