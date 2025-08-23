@@ -13,7 +13,8 @@ import Auth from "layouts/Auth.js";
 import Landing from "views/Landing.js";
 import Profile from "views/Profile.js";
 import Index from "views/Index.js";
-import RendezVous from "views/rendezvous"; // <-- ton fichier
+import RendezVous from "views/RendezVous.js";
+ // <-- ton fichier
 
 ReactDOM.render(
   <BrowserRouter>
@@ -26,7 +27,8 @@ ReactDOM.render(
       <Route path="/landing" exact component={Landing} />
       <Route path="/profile" exact component={Profile} />
       <Route path="/" exact component={Index} />
-      <Route path="/rendezvous" exact component={RendezVous} />   {/* ✅ FIX */}
+<Route path="/rendezvous" exact component={RendezVous} />
+   {/* ✅ FIX */}
 
       {/* add redirect for first page */}
       <Redirect from="*" to="/" />

@@ -12,28 +12,54 @@ export default function Index() {
     <>
       <IndexNavbar fixed />
 
-      <section
-        className="relative flex items-center justify-center h-screen bg-cover bg-center"
-        style={{
-          backgroundImage: `url(${require("assets/img/maison-isolee-d-art-numerique.jpg").default})`,
-        }}
-      >
-        <div className="absolute inset-0 bg-black opacity-50 z-0"></div>
+ <section className="flex flex-col md:flex-row items-center gap-8 min-h-[80vh] px-8 py-20">
+  {/* Image */}
+  <div className="w-full md:w-1/2 flex justify-center md:justify-start">
+    <img
+      src={require("assets/img/illustration.png").default}
+      alt="Maison"
+      className="max-w-[500px] w-full object-contain"
+    />
+  </div>
 
-        <div className="relative z-10 text-center text-white px-4">
-          <h1 className="text-5xll font-bold mb-4">Bienvenue sur RentiyA</h1>
-          <p className="text-lgg mb-8">
-            Trouvez votre maison de rêve dès maintenant
-          </p>
-   <div>
-  <Link to="/Landing" className="btn">
-  <i className="animation"></i>
-  Découvrir
-  <i className="animation"></i>
-</Link>
-</div>
-          </div>
-      </section>
+  {/* Texte */}
+  <div className="w-full md:w-1/2 text-center md:text-left flex flex-col md:items-start md:pl-24">
+    <h1 className="text-5xl md:text-6xl font-extrabold text-gray-900">
+      Trouvez Votre Maison Idéale
+    </h1>
+    <p className="text-xl text-orange-500 font-semibold mt-4">
+      Économisez jusqu’à 20%
+    </p>
+    <p className="mt-4 text-gray-600">
+      Découvrez nos meilleures offres immobilières dès maintenant
+    </p>
+  <a href="/Landing" className="inline-block mt-6">  {/* mt-6 ajoute de l’espace en haut */}
+  <button className="uiverse">
+    <div className="wrapper">
+      <span>Découvrir</span>
+      <div className="circle circle-12"></div>
+      <div className="circle circle-11"></div>
+      <div className="circle circle-10"></div>
+      <div className="circle circle-9"></div>
+      <div className="circle circle-8"></div>
+      <div className="circle circle-7"></div>
+      <div className="circle circle-6"></div>
+      <div className="circle circle-5"></div>
+      <div className="circle circle-4"></div>
+      <div className="circle circle-3"></div>
+      <div className="circle circle-2"></div>
+      <div className="circle circle-1"></div>
+    </div>
+  </button>
+</a>
+
+ 
+  </div>
+</section>
+
+
+
+
       <section className="mt-4 py-16 bg-white">
   <div className="container mx-auto px-4">
     <div className="flex flex-wrap justify-center text-center">
