@@ -1,5 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import hammametImg from "assets/img/hammamet.jpg";
+import sousseImg from "assets/img/sousse.jpg";
+import monastirImg from "assets/img/monastir.jpg";
+import mahdiaImg from "assets/img/mahdia.jpg";
 
 // components
 import Navbar from "components/Navbars/AuthNavbar.js";
@@ -8,26 +12,27 @@ import Footer from "components/Footers/Footer.js";
 export default function Landing() {
   // Données pour les villes tunisiennes avec images locales
   const tunisianCities = [
-    {
-      name: "Hammamet",
-      image: "assets/img/hammamet.jpg",
-      link: "/hammamet"
-    },
-    {
-      name: "Sousse",
-      image: "assets/img/sousse.jpg",
-      link: "/sousse"
-    },
-    {
-      name: "Monastir",
-      image: "assets/img/monastir.jpg",
-      link: "/monastir"
-    },
-    {
-      name: "Mahdia",
-      image: "src/assets/img/mahdia.jpg",
-      link: "/mahdia"
-    }
+  {
+    name: "Hammamet",
+    image: hammametImg,
+    link: "/hammamet"
+  },
+  {
+    name: "Sousse",
+    image: sousseImg,
+    link: "/sousse"
+  },
+  {
+    name: "Monastir",
+    image: monastirImg,
+    link: "/monastir"
+  },
+  {
+    name: "Mahdia",
+    image: mahdiaImg,
+    link: "/mahdia"
+  }
+
   ];
 
   return (
@@ -189,42 +194,44 @@ export default function Landing() {
         </section>
 
         {/* Section des villes tunisiennes */}
-        <section className="pt-20 pb-48 bg-blueGray-200">
-          <div className="container mx-auto px-4">
-            <div className="flex flex-wrap justify-center text-center mb-16">
-              <div className="w-full lg:w-6/12 px-4">
-                <h2 className="text-4xl font-semibold">Principales Villes Tunisiennes</h2>
-                <p className="text-lg leading-relaxed m-4 text-blueGray-500">
-                  Découvrez nos offres dans les villes les plus prisées de Tunisie
-                </p>
+    {/* Section des villes tunisiennes */}
+<section className="pt-20 pb-48 bg-blueGray-200">
+  <div className="container mx-auto px-4">
+    <div className="flex flex-wrap justify-center text-center mb-16">
+      <div className="w-full lg:w-6/12 px-4">
+        <h2 className="text-4xl font-semibold">Principales Villes Tunisiennes</h2>
+        <p className="text-lg leading-relaxed m-4 text-blueGray-500">
+          Découvrez nos offres dans les villes les plus prisées de Tunisie
+        </p>
+      </div>
+    </div>
+    <div className="flex flex-wrap">
+      {tunisianCities.map((city, index) => (
+        <div key={index} className="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
+          <div className="px-6">
+            <div className="city-card shadow-lg rounded-lg bg-white overflow-hidden mb-6">
+              <img
+                alt={city.name}
+                src={city.image}
+                className="w-full h-48 object-cover city-card-img"
+              />
+              <div className="py-4 px-6">
+                <h3 className="city-card-title text-xl font-bold mb-2">{city.name}</h3>
+                <Link
+                  to={city.link}
+                  className="city-card-btn bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                >
+                  En savoir plus
+                </Link>
               </div>
             </div>
-            <div className="flex flex-wrap">
-              {tunisianCities.map((city, index) => (
-                <div key={index} className="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
-                  <div className="px-6">
-                    <div className="shadow-lg rounded-lg bg-white overflow-hidden mb-6">
-                      <img
-                        alt={city.name}
-                        src={city.image}
-                        className="w-full h-48 object-cover"
-                      />
-                      <div className="py-4 px-6">
-                        <h3 className="text-xl font-bold mb-2">{city.name}</h3>
-                        <Link
-                          to={city.link}
-                          className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                        >
-                          En savoir plus
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
           </div>
-        </section>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
 
         <section className="pt-20 pb-48">
           <div className="container mx-auto px-4">

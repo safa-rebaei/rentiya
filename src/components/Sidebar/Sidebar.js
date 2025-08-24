@@ -149,28 +149,28 @@ export default function Sidebar() {
                   Tables
                 </Link>
               </li>
-
-              <li className="items-center">
+                   <li className="items-center">
                 <Link
                   className={
                     "text-xs uppercase py-3 font-bold block " +
-                    (window.location.href.indexOf("/admin/maps") !== -1
+                    (window.location.href.indexOf("/admin/tablesUsers") !== -1
                       ? "text-lightBlue-500 hover:text-lightBlue-600"
                       : "text-blueGray-700 hover:text-blueGray-500")
                   }
-                  to="/admin/maps"
+                  to="/admin/tablesUsers"
                 >
                   <i
                     className={
-                      "fas fa-map-marked mr-2 text-sm " +
-                      (window.location.href.indexOf("/admin/maps") !== -1
+                      "fas fa-table mr-2 text-sm " +
+                      (window.location.href.indexOf("/admin/tablesUsers") !== -1
                         ? "opacity-75"
                         : "text-blueGray-300")
                     }
                   ></i>{" "}
-                  Maps
+                 Gestion Des Utilisateurs
                 </Link>
               </li>
+
             </ul>
             <ul className="md:flex-col md:min-w-full flex flex-col list-none">
               <li className="items-center">
