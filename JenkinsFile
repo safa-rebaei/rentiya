@@ -1,0 +1,51 @@
+pipeline {
+  agent any
+  triggers {
+    // webhook GitHub pour PRs
+  }
+  stages {
+    stage('Checkout') {
+      steps { checkout scm }
+    }
+    stage('Setup') {
+      steps {
+        sh 'node -v && npm -v'
+        sh 'npm ci'
+      }
+    }
+    stage('Build') {
+      steps {
+        sh 'npm run build'
+      }
+      post {
+        failure { archiveArtifacts artifacts: 'build/**', fingerprint: true }
+      }
+    }
+    stage('Run (Docker)') {
+      steps {
+        sh 'docker build -t rentiya:test -f Dockerfile .'
+        sh 'docker run -d --rm -p 8080:80 --name rentiya_test rentiya:test'
+      }
+      post {
+        always { sh 'sleep 2' } // laisser le container démarrer
+      }
+    }
+    stage('Smoke Test') {
+      steps {
+        sh './scripts/smoke_test.sh http://localhost:8080 || (docker logs rentiya_test && exit 1)'
+      }
+    }
+    stage('Archive Artifacts') {
+      steps {
+        archiveArtifacts artifacts: '**/build/**, **/npm-debug.log', fingerprint: true
+        junit allowEmptyResults: true, testResults: '**/reports/*.xml'
+      }
+    }
+  }
+  post {
+    always {
+      sh 'docker ps -a || true'
+      sh 'docker rm -f rentiya_test || true'
+    }
+  }
+}
