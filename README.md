@@ -123,3 +123,6 @@ La template Notus React appartient à Creative Tim.
 📬 Contact
 
 Pour toute question concernant Rentya :
+## 🌐 Lien du site (Netlify)
+
+➡️ **https://rentiya.netlify.app**
