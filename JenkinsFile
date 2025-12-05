@@ -10,14 +10,14 @@ pipeline {
 
     stage('Setup') {
       steps {
-        sh 'node -v && npm -v'
-        sh 'npm ci'
+        bat 'node -v && npm -v'
+        bat 'npm ci'
       }
     }
 
     stage('Build') {
       steps {
-        sh 'npm run build'
+        bat 'npm run build'
       }
       post {
         failure {
@@ -28,34 +28,35 @@ pipeline {
 
     stage('Run (Docker)') {
       steps {
-        sh 'docker build -t rentiya:test -f Dockerfile .'
-        sh 'docker run -d --rm -p 8080:80 --name rentiya_test rentiya:test'
+        bat 'docker build -t rentiya:test -f Dockerfile .'
+        bat 'docker run -d --rm -p 8080:80 --name rentiya_test rentiya:test'
       }
       post {
         always {
-          sh 'sleep 2'  // laisser le conteneur démarrer
+          bat 'timeout /t 2'  // pause de 2 secondes sous Windows
         }
       }
     }
 
     stage('Smoke Test') {
       steps {
-        sh './scripts/smoke_test.sh http://localhost:8080 || (docker logs rentiya_test && exit 1)'
+        // Lancer le script PowerShell ou un équivalent Windows
+        bat 'powershell -ExecutionPolicy Bypass -File scripts\\smoke_test.ps1 http://localhost:8080 || (docker logs rentiya_test & exit 1)'
       }
     }
 
     stage('Archive Artifacts') {
       steps {
-        archiveArtifacts artifacts: '**/build/**, **/npm-debug.log', fingerprint: true
-        junit allowEmptyResults: true, testResults: '**/reports/*.xml'
+        archiveArtifacts artifacts: '**\\build\\**, **\\npm-debug.log', fingerprint: true
+        junit allowEmptyResults: true, testResults: '**\\reports\\*.xml'
       }
     }
   }
 
   post {
     always {
-      sh 'docker ps -a || true'
-      sh 'docker rm -f rentiya_test || true'
+      bat 'docker ps -a || exit 0'
+      bat 'docker rm -f rentiya_test || exit 0'
     }
   }
 }
