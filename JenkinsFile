@@ -2,6 +2,7 @@ pipeline {
   agent any
 
   stages {
+
     stage('Checkout') {
       steps { 
         checkout scm 
@@ -33,7 +34,7 @@ pipeline {
       }
       post {
         always {
-          bat 'timeout /t 2'  // pause 2 secondes sous Windows
+          bat 'timeout /t 2'
         }
       }
     }
