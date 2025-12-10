@@ -1,78 +1,84 @@
 import React from "react";
+import pinkyy from "../assets/img/pinky.jpg";
 
 export default function RendezVous() {
   return (
-    <section
-      className="relative min-h-screen flex items-center justify-center bg-cover bg-center"
+    <div
+      className="page-wrapper"
       style={{
-        backgroundImage: `url("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80")`,
+        backgroundImage: `url(${pinkyy})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        minHeight: "100vh",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: "20px",
       }}
     >
-      {/* Overlay sombre */}
-      <div className="absolute inset-0 bg-black/40"></div>
+      <div className="container">
+        <div className="form_area">
+          <p className="title">Prise de rendez-vous</p>
 
-      {/* Carte du formulaire */}
-      <div className="relative z-10 bg-white/95 backdrop-blur-md shadow-2xl rounded-2xl p-8 w-full max-w-md">
-        <h2 className="text-3xl font-bold text-center mb-6 text-blue-800">
-          Demander un Rendez-vous
-        </h2>
+          <form>
+            <div className="form_group">
+              <label htmlFor="name" className="sub_title">
+                Nom complet
+              </label>
+              <input
+                id="name"
+                type="text"
+                placeholder="Entrez votre nom complet"
+                className="form_style"
+              />
+            </div>
 
-        <form className="space-y-4">
-          {/* Champ Nom */}
-          <input
-            type="text"
-            placeholder="Votre Nom"
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
-            required
-          />
+            <div className="form_group">
+              <label htmlFor="email" className="sub_title">
+                Email
+              </label>
+              <input
+                id="email"
+                type="email"
+                placeholder="Entrez votre adresse email"
+                className="form_style"
+              />
+            </div>
 
-          {/* Champ Email */}
-          <input
-            type="email"
-            placeholder="Votre Email"
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
-            required
-          />
+            <div className="form_group">
+              <label htmlFor="date" className="sub_title">
+                Date du rendez-vous
+              </label>
+              <input id="date" type="date" className="form_style" />
+            </div>
 
-          {/* Champ Téléphone */}
-          <input
-            type="tel"
-            placeholder="Votre Téléphone"
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
-            required
-          />
+            <div className="form_group">
+              <label htmlFor="message" className="sub_title">
+                Message (optionnel)
+              </label>
+              <textarea
+                id="message"
+                placeholder="Décrivez votre demande"
+                className="form_style"
+                style={{ height: "100px", resize: "vertical" }}
+              ></textarea>
+            </div>
 
-          {/* Date et Heure */}
-          <div className="flex gap-4">
-            <input
-              type="date"
-              className="w-1/2 px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
-              required
-            />
-            <input
-              type="time"
-              className="w-1/2 px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
-              required
-            />
-          </div>
+            <button type="submit" className="btn">
+              Envoyer la demande
+            </button>
 
-          {/* Message */}
-          <textarea
-            placeholder="Message (facultatif)"
-            rows="3"
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
-          ></textarea>
-
-          {/* Bouton */}
-          <button
-            type="submit"
-            className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 shadow-lg transition duration-300"
-          >
-            Envoyer la Demande
-          </button>
-        </form>
+            <p>
+              Vous avez déjà un compte ?
+              <a href="../../views/auth/Login.js" className="link">
+                {" "}
+                Connectez-vous ici
+              </a>
+            </p>
+          </form>
+        </div>
       </div>
-    </section>
+    </div>
   );
 }
-

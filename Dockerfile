@@ -1,27 +1,17 @@
-# Étape 1 : Build de l'application React
-FROM node:18 AS build
+# Étape 1 : build React
+FROM node:20-alpine AS build
+
 WORKDIR /app
-
-# Copier les fichiers package.json
 COPY package*.json ./
-
-# Installer les dépendances
 RUN npm install
-
-# Copier tout le code source
 COPY . .
-
-# Lancer la construction du build front-end
 RUN npm run build
 
-# Étape 2 : Utiliser NGINX pour héberger le build
+# Étape 2 : serveur Nginx
 FROM nginx:alpine
-
-# Copier le build généré dans le dossier NGINX
-COPY --from=build /app/dist /usr/share/nginx/html
-
-# Exposer le port 80
+COPY --from=build /app/build /usr/share/nginx/html
+RUN rm /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/conf.d
 EXPOSE 80
 
-# Démarrer NGINX
 CMD ["nginx", "-g", "daemon off;"]
